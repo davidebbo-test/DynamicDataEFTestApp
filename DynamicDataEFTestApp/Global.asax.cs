@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.DynamicData;
 using System.Web.Routing;
 using System.Web.UI;
+using DynamicData.EFCodeFirstProvider;
 
 namespace DynamicDataEFTestApp
 {
@@ -29,7 +30,9 @@ namespace DynamicDataEFTestApp
             // Note: Make sure that you change "YourDataContextType" to the name of the data context
             // class in your application.
             // See http://go.microsoft.com/fwlink/?LinkId=257395 for more information on how to add and configure an Entity Data model to this project
-            //DefaultModel.RegisterContext(typeof(YourDataContextType), new ContextConfiguration() { ScaffoldAllTables = false });
+            DefaultModel.RegisterContext(
+                new EFCodeFirstDataModelProvider(() => new NorthwindEntities()),
+                new ContextConfiguration() { ScaffoldAllTables = true });
 
             // The following statement supports separate-page mode, where the List, Detail, Insert, and 
             // Update tasks are performed by using separate pages. To enable this mode, uncomment the following 
